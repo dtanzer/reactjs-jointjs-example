@@ -36,9 +36,26 @@ export class StationsView extends React.PureComponent {
 		graph.addCells([rect, rect2, link]);
 	}
 
+	renderSubwayLine(lineData, lineId) {
+		const links = lineData.map((v, i, l)=>{ return {current: v, next: l.get(i+1) }}).filter(linkData => linkData.next);
+		const renderedLinks = links.map((linkData) => {
+			return <div>{linkData.current.get('name')} - {linkData.next.get('name')}</div>
+		});
+		return renderedLinks;
+	}
+
+	renderStation(station) {
+		return <div>{station.get('name')}</div>;
+	}
+
 	render() {
-		console.log('stations', this.props.stations.toJS());
-		return <div ref="placeholder"></div>;
+		const allStations = this.props.stations.valueSeq().reduce((prev, cur) => { return prev.concat(cur) }).toSet();
+		const renderedStations = allStations.map(this.renderStation);
+
+		const renderedLinksByLine = this.props.stations.map(this.renderSubwayLine);
+		const renderedLinks = renderedLinksByLine.valueSeq().reduce((prev, cur) => { return prev.concat(cur)});
+
+		return <div ref="placeholder">{renderedStations.concat(renderedLinks)}</div>;
 	}
 }
 

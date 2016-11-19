@@ -23,7 +23,12 @@ const initialState = {
 	stations: {
 		u1: [
 			{ name: "Foo", id: "foo", x: 100, y: 100},
-			{ name: "Bar", id: "bar", x: 100, y: 100}
+			{ name: "Bar", id: "bar", x: 150, y: 100},
+			{ name: "Baz", id: "baz", x: 200, y: 100}
+		],
+		u2: [
+			{ name: "Snuggle", id: "snuggle", x: 100, y: 150 },
+			{ name: "Foo", id: "foo", x: 100, y: 100}
 		]
 	}
 };
