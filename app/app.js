@@ -6,7 +6,7 @@ import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 
 import { HeaderContainer } from './Header';
-import { MainSection } from './MainSection';
+import { MainSectionContainer } from './MainSection';
 
 import tabsReducer from './tabsReducer';
 
@@ -15,8 +15,8 @@ const reducer = combineReducers({
 });
 const initialState = {
   tabs: [
-    { name: "Network", id: "network", active: "true" },
-    { name: "Plan Journey", id: "plan", active: "false" }
+    { name: "Network", id: "network", active: true },
+    { name: "Plan Journey", id: "plan", active: false }
   ]
 };
 let store = createStore(reducer, fromJS(initialState));
@@ -29,7 +29,7 @@ ReactDOM.render(
   <Provider store={store}>
     <div>
       <HeaderContainer />
-      <MainSection />
+      <MainSectionContainer />
     </div>
   </Provider>,
   document.getElementById('app-root')
