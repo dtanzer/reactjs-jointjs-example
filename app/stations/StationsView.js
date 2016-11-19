@@ -2,39 +2,52 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import joint from 'jointjs';
 
+import { connect } from 'react-redux';
+
 export class StationsView extends React.PureComponent {
-    componentDidMount() {
-        const graph = new joint.dia.Graph();
+	componentDidMount() {
+		const graph = new joint.dia.Graph();
 
-        const paper = new joint.dia.Paper({
-            el: ReactDOM.findDOMNode(this.refs.placeholder),
-            width: 600,
-            height: 200,
-            model: graph,
-            gridSize: 1
-        });
+		const paper = new joint.dia.Paper({
+			el: ReactDOM.findDOMNode(this.refs.placeholder),
+			width: 600,
+			height: 200,
+			model: graph,
+			gridSize: 1
+		});
 
-        const rect = new joint.shapes.basic.Rect({
-            position: { x: 100, y: 30 },
-            size: { width: 100, height: 30 },
-            attrs: {
-                rect: { fill: 'blue' },
-                text: { text: 'my box', fill: 'white' }
-            }
-        });
+		const rect = new joint.shapes.basic.Rect({
+			position: { x: 100, y: 30 },
+			size: { width: 100, height: 30 },
+			attrs: {
+				rect: { fill: 'blue' },
+				text: { text: 'my box', fill: 'white' }
+			}
+		});
 
-        const rect2 = rect.clone();
-        rect2.translate(300);
+		const rect2 = rect.clone();
+		rect2.translate(300);
 
-        const link = new joint.dia.Link({
-            source: { id: rect.id },
-            target: { id: rect2.id }
-        });
+		const link = new joint.dia.Link({
+			source: { id: rect.id },
+			target: { id: rect2.id }
+		});
 
-        graph.addCells([rect, rect2, link]);
-    }
+		graph.addCells([rect, rect2, link]);
+	}
 
-    render() {
-        return <div ref="placeholder"></div>;
-    }
+	render() {
+		console.log('stations', this.props.stations.toJS());
+		return <div ref="placeholder"></div>;
+	}
 }
+
+function mapStateToProperties(state) {
+	return {
+		stations: state.get('stations')
+	};
+}
+const actionCreators = {
+}
+
+export const StationsViewContainer = connect(mapStateToProperties, actionCreators)(StationsView);
