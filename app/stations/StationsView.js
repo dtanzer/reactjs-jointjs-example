@@ -40,7 +40,7 @@ export class StationsView extends React.Component {
 
 	render() {
 		const allStations = this.props.stations.valueSeq().reduce((prev, cur) => { return prev.concat(cur) }).toSet();
-		const renderedStations = allStations.map(this.renderStation.bind(this));
+		const renderedStations = allStations.map(this.renderStation.bind(this)).toList();
 
 		const renderedLinksByLine = this.props.stations.map(this.renderSubwayLine.bind(this));
 		const renderedLinks = renderedLinksByLine.valueSeq().reduce((prev, cur) => { return prev.concat(cur)});
