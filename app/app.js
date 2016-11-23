@@ -48,10 +48,6 @@ const initialState = {
 	}
 };
 let store = createStore(reducer, fromJS(initialState));
-/*
-		U1: [ '', '', '', '', '', '', '', '', '', '' ],
-		U2: [ '', '', '', '', '', '', '', '', '', '']
-*/
 
 ReactDOM.render(
 	<Provider store={store}>

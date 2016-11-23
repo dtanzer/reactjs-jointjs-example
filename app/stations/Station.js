@@ -15,6 +15,9 @@ export class Station extends React.Component {
 		});
 		rect.set('id', station.id);
 
+		rect.on('change:position', (event) => {
+			this.props.onChangedPosition(station.id, event.attributes.position.x, event.attributes.position.y);
+		});
 		this.props.container.push(rect);
 	}
 

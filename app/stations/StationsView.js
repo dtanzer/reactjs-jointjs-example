@@ -35,7 +35,7 @@ export class StationsView extends React.Component {
 	}
 
 	renderStation(station) {
-		return <Station container={this.cells} station={station.toJS()} />;
+		return <Station container={this.cells} station={station.toJS()} onChangedPosition={ this.props.onChangedPosition } />;
 	}
 
 	render() {
@@ -55,6 +55,14 @@ function mapStateToProperties(state) {
 	};
 }
 const actionCreators = {
+	onChangedPosition: (id, x, y) => {
+		return {
+			type: 'STATION_MOVED',
+			id: id,
+			x: x,
+			y: y
+		};
+	}
 }
 
 export const StationsViewContainer = connect(mapStateToProperties, actionCreators)(StationsView);
