@@ -8,7 +8,7 @@ export class Link extends React.Component {
 			target: { id: this.props.to.id }
 		});
 
-		this.props.graph.addCell(link);
+		this.props.container.push(link);
 	}
 
 	render() {

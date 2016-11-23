@@ -15,7 +15,7 @@ export class Station extends React.Component {
 		});
 		rect.set('id', station.id);
 
-		this.props.graph.addCell(rect);
+		this.props.container.push(rect);
 	}
 
 	render() {
